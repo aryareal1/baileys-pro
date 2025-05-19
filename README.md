@@ -21,7 +21,7 @@ This project is provided **as-is** and should be used with **extreme caution**.
 
 ## Install
 
-Use the stable version:
+Use the github version:
 ```bash
 npm install github:aryareal1/baileys-pro
 ```
@@ -1187,10 +1187,10 @@ await sock.sendMessage(
 )
 ```
 
-#### Sending Messages with AI Icon
+### Sending Messages with AI Icon
 - You can add ai icon to the message by passing `ai: true` in content object
 
-> [!WARN]
+> [!WARNING]
 > This only possible in private chat. Groups and others won't work.
 
 ```javascript
