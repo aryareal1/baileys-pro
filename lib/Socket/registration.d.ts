@@ -1,9 +1,10 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import { AxiosStatic, AxiosRequestConfig } from 'axios';
 import { KeyPair, SignedKeyPair, SocketConfig } from '../Types';
+import { ILogger } from '../Utils/logger';
 export declare const makeRegistrationSocket: (config: SocketConfig) => {
     register: (code: string) => Promise<ExistsResponse>;
     requestRegistrationCode: (registrationOptions?: RegistrationOptions) => Promise<ExistsResponse>;
-    logger: Logger;
+    logger: ILogger;
     getOrderDetails: (orderId: string, tokenBase64: string) => Promise<import("../Types").OrderDetails>;
     getCatalog: ({ jid, limit, cursor }: import("../Types").GetCatalogOptions) => Promise<{
         products: import("../Types").Product[];
@@ -163,7 +164,7 @@ export declare const makeRegistrationSocket: (config: SocketConfig) => {
     sendNode: (frame: import("../WABinary").BinaryNode) => Promise<void>;
     logout: (msg?: string) => Promise<void>;
     end: (error: Error | undefined) => void;
-    onUnexpectedError: (err: Error | axios, msg: string) => void;
+    onUnexpectedError: (err: Error | AxiosStatic, msg: string) => void;
     uploadPreKeys: (count?: number) => Promise<void>;
     uploadPreKeysToServerIfRequired: () => Promise<void>;
     requestPairingCode: (phoneNumber: string, pairCode: string) => Promise<string>;

@@ -1,8 +1,10 @@
 import { UserFacingSocketConfig } from '../Types';
+import { ILogger } from "../Utils/logger";
+import { Boom } from "@hapi/boom";
 declare const makeWASocket: (config: UserFacingSocketConfig) => {
     register: (code: string) => Promise<import("./registration").ExistsResponse>;
     requestRegistrationCode: (registrationOptions?: import("./registration").RegistrationOptions) => Promise<import("./registration").ExistsResponse>;
-    logger: Logger;
+    logger: ILogger;
     getOrderDetails: (orderId: string, tokenBase64: string) => Promise<import("../Types").OrderDetails>;
     getCatalog: ({ jid, limit, cursor }: import("../Types").GetCatalogOptions) => Promise<{
         products: import("../Types").Product[];
