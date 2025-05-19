@@ -337,11 +337,16 @@ sock.ev.on('creds.update', saveCreds)
 
 You can sync cache on MultiFileAuthState
 ```javascript
+const makeWASocket = require("baileys-pro").default;
+const { useMultiFileAuthState, makeCacheableSignalKeyStore } = require("baileys-pro");
+
+// enable syncCache then fetch cache
 const { state, saveCreds, cache: authCache } = await useMultiFileAuthState('auth_info_baileys', { syncCache: true })
 
 const sock = makeWASocket({
   auth: {
     creds: state.creds,
+    // use makeCacheableSignalKeyStore
     keys: makeCacheableSignalKeyStore(
       state.keys, 
       pino().child({ level: "silent", stream: "store" }),
@@ -350,6 +355,7 @@ const sock = makeWASocket({
   }
 })
 
+// this will be called as soon as the credentials are updated
 sock.ev.on('creds.update', saveCreds)
 ```
 
