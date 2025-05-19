@@ -318,7 +318,7 @@ export type AnyRegularMessageContent = (({
     body?: string;
     footer?: string;
 } & Mentionable & Contextable & Interactiveable & Shopable & Collectionable & Cardsable & WithDimensions) | SharePhoneNumber | RequestPhoneNumber) & ViewOnce;
-export type AnyMessageContent = AnyRegularMessageContent | {
+export type AnyMessageContent = (AnyRegularMessageContent | {
     forward: WAMessage;
     force?: boolean;
 } | {
@@ -326,7 +326,7 @@ export type AnyMessageContent = AnyRegularMessageContent | {
     delete: WAMessageKey;
 } | {
     disappearingMessagesInChat: boolean | number;
-};
+}) & { ai?: boolean };
 export type GroupMetadataParticipants = Pick<GroupMetadata, 'participants'>;
 type MinimalRelayOptions = {
     /** override the message ID with a custom provided string */
@@ -349,6 +349,7 @@ export type MessageRelayOptions = MinimalRelayOptions & {
     useUserDevicesCache?: boolean;
     /** jid list of participants for status@broadcast */
     statusJidList?: string[];
+    aiIcon?: boolean
 };
 export type MiscMessageGenerationOptions = MinimalRelayOptions & {
     /** optional, if you want to manually set the timestamp of the message */
