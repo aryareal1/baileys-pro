@@ -19,37 +19,23 @@ This project is provided **as-is** and should be used with **extreme caution**.
 
 **Use at your own discretion.** Respect platform rules, user boundaries, and stay within legal and moral lines.
 
-## Example
-
-Here is an example you can use: [example.ts](Example/example.ts) or here is a tutorial for running the Baileys WhatsApp API code
-1. ``` cd path/to/Baileys ```
-2. ``` npm install```
-3. ``` node example.js```
-
 ## Install
 
 Use the stable version:
 ```bash
-npm install baileys-pro
-```
-
-Use the edge version (no guarantee of stability, but latest fixes + features)
-```bash
-yarn add baileys-pro@latest
+npm install github:aryareal1/baileys-pro
 ```
 
 Then import your code using:
 ```javascript
 const { default: makeWASocket } = require("baileys-pro")
+// import makeWASocket from "baileys-pro"
 ```
 # Links
 
 #### Official
 - [Discord](https://discord.gg/WeJM5FP9GG)
 - [Docs](https://guide.whiskeysockets.io/)
-
-#### Baileys Pro
-- [WhatsApp](https://whatsapp.com/channel/0029Vb89ifxH5JM0fh2VvM2U)
 
 # Index
 
@@ -100,6 +86,7 @@ const { default: makeWASocket } = require("baileys-pro")
         - [Audio Message](#audio-message)
         - [Image Message](#image-message)
         - [ViewOnce Message](#view-once-message)
+    - [Sending with AI Icon](#sending-messages-with-ai-icon)
 - [Modify Messages](#modify-messages)
     - [Delete Messages (for everyone)](#deleting-messages-for-everyone)
     - [Edit Messages](#editing-messages)
@@ -1198,6 +1185,19 @@ await sock.sendMessage(
         caption: 'hello word'
     }
 )
+```
+
+#### Sending Messages with AI Icon
+- You can add ai icon to the message by passing `ai: true` in content object
+
+> [!WARN]
+> This only possible in private chat. Groups and others won't work.
+
+```javascript
+await sock.sendMessage(jid, {
+    text: 'This message labeled AI.',
+    ai: true, // works with all message type
+})
 ```
 
 ## Modify Messages
