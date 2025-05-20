@@ -143,7 +143,7 @@ export type PollMessageOptions = {
 };
 export type PollResultMessage = {
     name: string;
-    votes: proto.Message.PollResultSnapshotMessage.IPollVote[] | [string|null|undefined, number|Long|null|undefined][];
+    votes: (proto.Message.PollResultSnapshotMessage.IPollVote | [string|null|undefined, number|Long|null|undefined])[];
     messageSecret?: Uint8Array;
 };
 type SharePhoneNumber = {
