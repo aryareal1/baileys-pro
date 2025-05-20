@@ -2,7 +2,6 @@
 /// <reference types="node" />
 /// <reference types="node" />
 import { AxiosRequestConfig } from 'axios';
-import type { Logger } from 'pino';
 import type { Readable } from 'stream';
 import type { URL } from 'url';
 import { BinaryNode } from '../WABinary';
@@ -10,6 +9,7 @@ import { proto } from '../../WAProto';
 import { MEDIA_HKDF_KEY_MAPPING } from '../Defaults';
 import type { GroupMetadata } from './GroupMetadata';
 import { CacheStore } from './Socket';
+import Long = require("long");
 export { proto as WAProto };
 export type WAMessage = proto.IWebMessageInfo;
 export type WAMessageContent = proto.IMessage;
@@ -91,7 +91,7 @@ type Templatable = {
 };
 type Interactiveable = {
     /** add buttons to the message (conflicts with normal buttons)*/
-    interactiveButtons?: proto.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton[];
+    interactiveButtons?: proto.Message.InteractiveMessage.NativeFlowMessage.INativeFlowButton[];
     title?: string;
     subtitle?: string;
     media?: boolean;
@@ -143,7 +143,7 @@ export type PollMessageOptions = {
 };
 export type PollResultMessage = {
     name: string;
-    votes: proto.Message.PollResultSnapshotMessage.PollVote[];
+    votes: proto.Message.PollResultSnapshotMessage.IPollVote[] | [string|null|undefined, number|Long|null|undefined][];
     messageSecret?: Uint8Array;
 };
 type SharePhoneNumber = {
