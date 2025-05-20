@@ -1,12 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
 import type { Agent } from 'https';
-import type { Logger } from 'pino';
 import type { URL } from 'url';
 import { proto } from '../../WAProto';
 import { AuthenticationState, SignalAuthState, TransactionCapabilityOptions } from './Auth';
 import { GroupMetadata } from './GroupMetadata';
 import { MediaConnInfo } from './Message';
 import { SignalRepository } from './Signal';
+import { ILogger } from '../Utils/logger';
 export type WAVersion = [number, number, number];
 export type WABrowserDescription = [string, string, string];
 export type CacheStore = {
@@ -33,7 +33,7 @@ export type SocketConfig = {
     /** proxy agent */
     agent?: Agent;
     /** pino logger */
-    logger: Logger;
+    logger: ILogger;
     /** version to connect with */
     version: WAVersion;
     /** override browser config */

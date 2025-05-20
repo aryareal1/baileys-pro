@@ -29,6 +29,7 @@ export type WAMediaUpload = Buffer | {
     stream: Readable;
 };
 export import Annotations = proto.IInteractiveAnnotation;
+import { ILogger } from '../Utils/logger';
 /** Set of message types that are supported by the library */
 export type MessageType = keyof proto.Message;
 export type DownloadableMessage = {
@@ -387,7 +388,7 @@ export type WAMediaUploadFunction = (readStream: Readable | Buffer, opts: WAMedi
     handle?: string;
 }>;
 export type MediaGenerationOptions = {
-    logger?: Logger;
+    logger?: ILogger;
     mediaTypeOverride?: MediaType;
     upload: WAMediaUploadFunction;
     /** cache media so it does not have to be uploaded again */

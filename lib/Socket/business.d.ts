@@ -1,7 +1,8 @@
 import { GetCatalogOptions, ProductCreate, ProductUpdate, SocketConfig } from '../Types';
+import { ILogger } from '../Utils/logger';
 import { BinaryNode } from '../WABinary';
 export declare const makeBusinessSocket: (config: SocketConfig) => {
-    logger: Logger;
+    logger: ILogger;
     getOrderDetails: (orderId: string, tokenBase64: string) => Promise<import("../Types").OrderDetails>;
     getCatalog: ({ jid, limit, cursor }: GetCatalogOptions) => Promise<{
         products: import("../Types").Product[];

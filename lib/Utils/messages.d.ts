@@ -1,10 +1,10 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import { Logger } from 'pino';
 import { type Transform } from 'stream';
 import { proto } from '../../WAProto';
 import { AnyMediaMessageContent, AnyMessageContent, MediaGenerationOptions, MessageContentGenerationOptions, MessageGenerationOptions, MessageGenerationOptionsFromContent, MessageUserReceipt, WAMessage, WAMessageContent, WAProto } from '../Types';
 import { MediaDownloadOptions } from './messages-media';
+import { ILogger } from './logger';
 /**
  * Uses a regex to test whether the string contains a URL, and returns the URL if it does.
  * @param text eg. hello https://google.com
@@ -66,7 +66,7 @@ export declare const aggregateMessageKeysNotFromMe: (keys: proto.IMessageKey[]) 
 }[];
 type DownloadMediaMessageContext = {
     reuploadRequest: (msg: WAMessage) => Promise<WAMessage>;
-    logger: Logger;
+    logger: ILogger;
 };
 /**
  * Downloads the given message. Throws an error if it's not a media message

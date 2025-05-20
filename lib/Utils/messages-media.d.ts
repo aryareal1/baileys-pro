@@ -1,11 +1,11 @@
 import { Boom } from '@hapi/boom';
 import { AxiosRequestConfig } from 'axios';
-import type { Logger } from 'pino';
 import { Readable } from 'stream';
 import { URL } from 'url';
 import { proto } from '../../WAProto';
 import { DownloadableMessage, MediaConnInfo, MediaDecryptionKeyInfo, MediaType, SocketConfig, WAMediaUpload, WAMediaUploadFunction, WAMessageContent } from '../Types';
 import { BinaryNode } from '../WABinary';
+import { ILogger } from './logger';
 export declare const hkdfInfoKey: (type: MediaType) => string;
 /** generates all the keys required to encrypt/decrypt & sign a media message */
 export declare function getMediaKeys(buffer: Uint8Array | string | null | undefined, mediaType: MediaType): MediaDecryptionKeyInfo;
@@ -26,7 +26,7 @@ export declare function getAudioDuration(buffer: Buffer | string | Readable): Pr
 /**
   referenced from and modifying https://github.com/wppconnect-team/wa-js/blob/main/src/chat/functions/prepareAudioWaveform.ts
  */
-export declare function getAudioWaveform(buffer: Buffer | string | Readable, logger?: Logger): Promise<Uint8Array<ArrayBuffer> | undefined>;
+export declare function getAudioWaveform(buffer: Buffer | string | Readable, logger?: ILogger): Promise<Uint8Array<ArrayBuffer> | undefined>;
 export declare const toReadable: (buffer: Buffer) => any;
 export declare const toBuffer: (stream: Readable) => Promise<any>;
 export declare const getStream: (item: WAMediaUpload, opts?: AxiosRequestConfig) => Promise<{
@@ -44,7 +44,7 @@ export declare const getStream: (item: WAMediaUpload, opts?: AxiosRequestConfig)
 }>;
 /** generates a thumbnail for a given media, if required */
 export declare function generateThumbnail(file: string, mediaType: 'video' | 'image', options: {
-    logger?: Logger;
+    logger?: ILogger;
 }): Promise<{
     thumbnail: string | undefined;
     originalImageDimensions: {
@@ -57,7 +57,7 @@ export declare const getHttpStream: (url: string | URL, options?: AxiosRequestCo
 }) => Promise<Readable>;
 type EncryptedStreamOptions = {
     saveOriginalFileIfRequired?: boolean;
-    logger?: Logger;
+    logger?: ILogger;
     opts?: AxiosRequestConfig;
 };
 export declare const prepareStream: (media: WAMediaUpload, mediaType: MediaType, { logger, saveOriginalFileIfRequired, opts }?: EncryptedStreamOptions) => Promise<{
